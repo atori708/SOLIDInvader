@@ -6,7 +6,7 @@ namespace Invader.Unit
 {
 	public interface IMovable
 	{
-		void Move(Vector2 dir, float moveValue);
+		void Move(Vector2 dir);
 	}
 
 	public interface IAttackable

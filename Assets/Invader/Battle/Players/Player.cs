@@ -13,19 +13,18 @@ namespace Invader.Unit.Players
 		IPlayerView playerView;
 
 		ReactiveProperty<Vector2> position = new ReactiveProperty<Vector2>();
+		public IReadOnlyReactiveProperty<Vector2> Position => position;
 
-		public Player(IPlayerView playerView)
-		{
-			position.Subscribe(playerView.SetPosition);
-		}
+		// こういったデータは外部からもらったほうがよい
+		float moveSpeed = 10;
 
 		public void Attack()
 		{
 		}
 
-		public void Move(Vector2 dir, float moveValue)
+		public void Move(Vector2 dir)
 		{
-			position.Value += dir * moveValue;
+			position.Value += dir * moveSpeed * Time.deltaTime;
 		}
 
 		public void ReceiveDamage(int damage)

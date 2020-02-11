@@ -11,7 +11,10 @@ namespace Invader.Unit
 	/// </summary>
 	public class Mover : MonoBehaviour
 	{
+		// SerializeFieldにしたいけどインターフェースは無理なんだよなあ
+		// なんか新しいバージョンだとできるようになるとか聞いた
 		IMovable movable = null;
+
 		IMoveInput moveInput;
 
 		bool isMoving = false;
@@ -36,7 +39,7 @@ namespace Invader.Unit
 				return;
 			}
 
-			movable.Move(moveInput.MoveDirection.Value, 1);
+			movable.Move(moveInput.MoveDirection.Value);
 		}
 	}
 }

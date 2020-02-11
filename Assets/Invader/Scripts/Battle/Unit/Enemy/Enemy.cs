@@ -13,7 +13,7 @@ namespace Invader.Unit.Enemies
 		{
 		}
 
-		public void Move(Vector2 dir, float moveValue)
+		public void Move(Vector2 dir)
 		{
 		}
 
