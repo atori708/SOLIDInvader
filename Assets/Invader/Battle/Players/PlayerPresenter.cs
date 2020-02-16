@@ -20,9 +20,9 @@ namespace Invader.Unit.Players
 
 		public void Initialize(IInput input, ILevelData levelData)
 		{
-			//attacker = new Attacker(player, attackInput);
 			player = new PlayerModel(levelData);
 			mover = new Mover(player, input);
+			attacker = new Attacker(player, input);
 
 			player.Position.Subscribe(playerView.SetPosition).AddTo(this);
 		}

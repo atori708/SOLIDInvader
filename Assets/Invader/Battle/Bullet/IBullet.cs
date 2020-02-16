@@ -16,8 +16,6 @@ namespace Invader.Bullet
 		/// <summary>
 		/// あたった
 		/// </summary>
-		IObservable<UniRx.Unit> OnHit { get; }
-
-		void Hit();
+		IObservable<IBullet> OnHit { get; }
 	}
 }

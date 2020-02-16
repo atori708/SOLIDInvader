@@ -14,11 +14,11 @@ namespace Invader.Bullet
 	/// </summary>
 	public class Bullet : MonoBehaviour, IBullet
 	{
-		Subject<UniRx.Unit> onHit;
-		public IObservable<UniRx.Unit> OnHit => OnHit;
-
 		IAttacker attacker;
 		public IAttacker Attacker => attacker;
+
+		Subject<IBullet> onHit;
+		public IObservable<IBullet> OnHit => OnHit;
 
 		Vector3 direction;
 
@@ -31,9 +31,17 @@ namespace Invader.Bullet
 			direction = attacker.Direction;
 		}
 
-		public void Hit()
+		private void OnTriggerEnter(Collider other)
 		{
-			onHit.OnNext(UniRx.Unit.Default);
+			var damageable = other.GetComponent<IDamagable>();
+			if (damageable == null) {
+				return;
+			}
+
+			damageable.ReceiveDamage(1);
+			onHit.OnNext(this);
+
+			Destroy(gameObject);
 		}
 
 		private void Update()

@@ -644,7 +644,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1081532926}
-  - component: {fileID: 1081532927}
   - component: {fileID: 1081532928}
   m_Layer: 0
   m_Name: Player
@@ -668,18 +667,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1081532927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081532925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5f0c29a4d82704db27ff50b960a66e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1081532928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,7 +679,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45bf5af0b48477e4c8980ed4be872b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mover: {fileID: 1081532927}
   playerView: {fileID: 2118710813}
 --- !u!1 &1405872321
 GameObject:
@@ -712,7 +698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1405872322
 RectTransform:
   m_ObjectHideFlags: 0

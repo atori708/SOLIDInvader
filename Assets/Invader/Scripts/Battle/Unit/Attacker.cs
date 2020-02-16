@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Invader.Inputs;
 using UniRx;
@@ -11,11 +12,18 @@ namespace Invader.Unit
 
 		IAttackInput attackInput = null;
 
+		IDisposable disposable;
+
 		public Attacker(IAttacker target, IAttackInput attackInput)
 		{
 			this.target = target;
 			this.attackInput = attackInput;
-			attackInput.OnInputAttackObservable.Subscribe(_ => target.Attack());
+			disposable = attackInput.OnInputAttackObservable.Subscribe(_ => target.Attack());
+		}
+
+		~Attacker()
+		{
+			disposable.Dispose();
 		}
 	}
 }
