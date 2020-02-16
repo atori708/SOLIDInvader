@@ -1,4 +1,5 @@
-﻿using Invader.Inputs;
+﻿using System;
+using Invader.Inputs;
 using UniRx;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Invader.Unit
 	/// →そうするとコンストラクタが使えないのでなんか気持ち悪い
 	/// →Zenjectでなんとかできるのかな？
 	/// </summary>
-	public class Mover : MonoBehaviour
+	public class Mover
 	{
 		// SerializeFieldにしたいけどインターフェースは無理なんだよなあ
 		// なんか新しいバージョンだとできるようになるとか聞いた
@@ -19,13 +20,19 @@ namespace Invader.Unit
 
 		bool isMoving = false;
 
-		public void Initialize(IMover movable, IMoveInput moveInput)
+		IDisposable disposable;
+
+		public Mover(IMover movable, IMoveInput moveInput)
 		{
 			this.movable = movable;
 			this.moveInput = moveInput;
-			this.moveInput.OnInputMoveObservable
-				.Subscribe(SetMoving)
-				.AddTo(this);
+
+			disposable = this.moveInput.OnInputMoveObservable.Subscribe(SetMoving);
+		}
+
+		~Mover()
+		{
+			disposable.Dispose();
 		}
 
 		void SetMoving(bool isMoving)
@@ -33,7 +40,7 @@ namespace Invader.Unit
 			this.isMoving = isMoving;
 		}
 
-		void Update()
+		public void Move()
 		{
 			if (!isMoving) {
 				return;

@@ -14,8 +14,6 @@ namespace Invader.Unit.Players
 	{
 		IPlayerView playerView;
 
-		IInput input;
-
 		ReactiveProperty<Vector2> position = new ReactiveProperty<Vector2>();
 		public IReadOnlyReactiveProperty<Vector2> Position => position;
 
@@ -24,19 +22,14 @@ namespace Invader.Unit.Players
 		// こういったデータは外部からもらったほうがよい
 		float moveVelocity;
 
-		bool isMoving = false;
-
-		public PlayerModel(IInput input, ILevelData levelData)
+		public PlayerModel(ILevelData levelData)
 		{
-			this.input = input;
 			moveVelocity = levelData.PlayerMoveVelocity;
-			input.OnInputMoveObservable
-				.Subscribe(SetMoving);
-			input.OnInputAttackObservable.Subscribe(_ => Attack());
 		}
 
 		public void Attack()
 		{
+			Debug.Log("Attack");
 		}
 
 		public void Move(Vector2 dir)
@@ -46,20 +39,6 @@ namespace Invader.Unit.Players
 
 		public void ReceiveDamage(int damage)
 		{
-		}
-
-		void SetMoving(bool isMoving)
-		{
-			this.isMoving = isMoving;
-		}
-
-		public void Update()
-		{
-			if (!isMoving) {
-				return;
-			}
-
-			Move(input.MoveDirection.Value);
 		}
 	}
 }

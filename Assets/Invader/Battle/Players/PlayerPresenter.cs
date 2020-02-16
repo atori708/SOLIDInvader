@@ -9,7 +9,6 @@ namespace Invader.Unit.Players
 {
 	public class PlayerPresenter : MonoBehaviour
 	{
-		[SerializeField]
 		Mover mover = null;
 
 		Attacker attacker = null;
@@ -21,16 +20,16 @@ namespace Invader.Unit.Players
 
 		public void Initialize(IInput input, ILevelData levelData)
 		{
-			player = new PlayerModel(input, levelData);
-			//mover.Initialize(player, moveInput);
 			//attacker = new Attacker(player, attackInput);
+			player = new PlayerModel(levelData);
+			mover = new Mover(player, input);
 
 			player.Position.Subscribe(playerView.SetPosition).AddTo(this);
 		}
 
 		private void Update()
 		{
-			player.Update();
+			mover.Move();
 		}
 	}
 }
