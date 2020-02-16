@@ -4,6 +4,7 @@ using UnityEngine;
 using Invader.Unit;
 using Invader.Unit.Players;
 using Invader.Level;
+using Invader.Bullets;
 
 namespace Invader.Scene
 {
@@ -17,21 +18,17 @@ namespace Invader.Scene
 		[SerializeField]
 		DebugInput debugInput = null;
 
+		[SerializeField]
+		LevelData levelData = null;
+
 		public void Start()
 		{
 			debugInput.Initialize();
-			playerPresenter.Initialize(debugInput, new LevelData());
+			playerPresenter.Initialize(debugInput, levelData);
 		}
 
 		public void End()
 		{
 		}
-	}
-
-	public class LevelData : ILevelData
-	{
-		public float PlayerBulletVelocity => 10;
-
-		public float PlayerMoveVelocity => 10;
 	}
 }

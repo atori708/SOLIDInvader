@@ -6,7 +6,7 @@ using Invader.Unit;
 using UniRx;
 using UnityEngine;
 
-namespace Invader.Bullet
+namespace Invader.Bullets
 {
 	/// <summary>
 	/// 弾
@@ -26,6 +26,7 @@ namespace Invader.Bullet
 
 		public void Initialize(IAttackable attacker, ILevelData levelData)
 		{
+			transform.position = attacker.Position.Value;
 			this.attacker = attacker;
 			velocity = levelData.PlayerBulletVelocity;
 			direction = attacker.Direction;

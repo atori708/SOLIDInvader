@@ -4,7 +4,7 @@ using UniRx;
 using System;
 using Invader.Unit;
 
-namespace Invader.Bullet
+namespace Invader.Bullets
 {
 	public interface IBullet
 	{

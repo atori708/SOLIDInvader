@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Invader.Bullets;
 using UnityEngine;
 
 namespace Invader.Level
@@ -12,6 +13,7 @@ namespace Invader.Level
 		float PlayerMoveVelocity { get; }
 		float PlayerBulletVelocity { get; }
 
+		Bullet PlayerBullet { get; }
 		// etc...
 	}
 }

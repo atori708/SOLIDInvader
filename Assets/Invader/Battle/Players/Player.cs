@@ -4,6 +4,7 @@ using UnityEngine;
 using UniRx;
 using Invader.Inputs;
 using Invader.Level;
+using Invader.Bullets;
 
 namespace Invader.Unit.Players
 {
@@ -19,16 +20,28 @@ namespace Invader.Unit.Players
 
 		public Vector2 Direction => Vector2.up;
 
-		// こういったデータは外部からもらったほうがよい
+		Bullet originalBulletObject;
+
+		ILevelData levelData;
+
 		float moveVelocity;
+
+		Bullet CreateBullet()
+		{
+			return GameObject.Instantiate(originalBulletObject);
+		}
 
 		public PlayerModel(ILevelData levelData)
 		{
+			this.levelData = levelData;
+			originalBulletObject = levelData.PlayerBullet;
 			moveVelocity = levelData.PlayerMoveVelocity;
 		}
 
 		public void Attack()
 		{
+			var bullet = CreateBullet();
+			bullet.Initialize(this, levelData);
 			Debug.Log("Attack");
 		}
 
