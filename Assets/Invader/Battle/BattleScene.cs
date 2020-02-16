@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Invader.Unit;
 using Invader.Unit.Players;
+using Invader.Level;
 
 namespace Invader.Scene
 {
@@ -19,11 +20,18 @@ namespace Invader.Scene
 		public void Start()
 		{
 			debugInput.Initialize();
-			playerPresenter.Initialize(debugInput);
+			playerPresenter.Initialize(debugInput, new LevelData());
 		}
 
 		public void End()
 		{
 		}
+	}
+
+	public class LevelData : ILevelData
+	{
+		public float PlayerBulletVelocity => 10;
+
+		public float PlayerMoveVelocity => 10;
 	}
 }

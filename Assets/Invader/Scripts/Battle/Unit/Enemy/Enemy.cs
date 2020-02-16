@@ -9,6 +9,8 @@ namespace Invader.Unit.Enemies
 	/// </summary>
 	public class Enemy : IUnit
 	{
+		public Vector2 Direction => Vector2.down;
+
 		public void Attack()
 		{
 		}

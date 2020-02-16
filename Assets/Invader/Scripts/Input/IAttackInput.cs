@@ -4,6 +4,6 @@ namespace Invader.Inputs
 {
 	public interface IAttackInput
 	{
-		IObservable<bool> OnInputAttackObservable { get; }
+		IObservable<UniRx.Unit> OnInputAttackObservable { get; }
 	}
 }

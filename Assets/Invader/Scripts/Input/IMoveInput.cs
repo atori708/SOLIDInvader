@@ -9,4 +9,8 @@ namespace Invader.Inputs
 		IObservable<bool> OnInputMoveObservable { get; }
 		IReadOnlyReactiveProperty<Vector2> MoveDirection { get; }
 	}
+
+	public interface IInput : IMoveInput, IAttackInput
+	{ }
+
 }

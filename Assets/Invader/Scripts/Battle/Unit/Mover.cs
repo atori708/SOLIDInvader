@@ -13,13 +13,13 @@ namespace Invader.Unit
 	{
 		// SerializeFieldにしたいけどインターフェースは無理なんだよなあ
 		// なんか新しいバージョンだとできるようになるとか聞いた
-		IMovable movable = null;
+		IMover movable = null;
 
 		IMoveInput moveInput;
 
 		bool isMoving = false;
 
-		public void Initialize(IMovable movable, IMoveInput moveInput)
+		public void Initialize(IMover movable, IMoveInput moveInput)
 		{
 			this.movable = movable;
 			this.moveInput = moveInput;

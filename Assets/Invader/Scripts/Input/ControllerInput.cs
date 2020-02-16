@@ -15,6 +15,8 @@ namespace Invader.Inputs
 		ReactiveProperty<Vector2> moveDirection;
 		public IReadOnlyReactiveProperty<Vector2> MoveDirection => moveDirection;
 
+		IObservable<UniRx.Unit> IAttackInput.OnInputAttackObservable => throw new NotImplementedException();
+
 		public ControllerInput()
 		{
 		}

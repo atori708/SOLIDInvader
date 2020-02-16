@@ -4,13 +4,21 @@ using UnityEngine;
 
 namespace Invader.Unit
 {
-	public interface IMovable
+	public interface IMover
 	{
 		void Move(Vector2 dir);
 	}
 
-	public interface IAttackable
+	public interface IAttacker
 	{
+		/// <summary>
+		/// どっち向いてるか
+		/// </summary>
+		Vector2 Direction { get; }
+
+		/// <summary>
+		/// 攻撃
+		/// </summary>
 		void Attack();
 	}
 
@@ -19,6 +27,6 @@ namespace Invader.Unit
 		void ReceiveDamage(int damage);
 	}
 
-	public interface IUnit : IMovable, IAttackable, IDamagable
+	public interface IUnit : IMover, IAttacker, IDamagable
 	{ }
 }

@@ -6,7 +6,7 @@ using System;
 using UniRx;
 using UnityEngine.UI;
 
-public class DebugInput : MonoBehaviour, IMoveInput
+public class DebugInput : MonoBehaviour, IInput
 {
 	[SerializeField]
 	DebugInputMoveButton leftButton = null;
@@ -14,11 +14,16 @@ public class DebugInput : MonoBehaviour, IMoveInput
 	[SerializeField]
 	DebugInputMoveButton rightButton = null;
 
+	[SerializeField]
+	Button attackButton = null;
+
 	Subject<bool> onInputMoveSubject = new Subject<bool>();
 	public IObservable<bool> OnInputMoveObservable => onInputMoveSubject;
 
 	ReactiveProperty<Vector2> moveDirection = new ReactiveProperty<Vector2>();
 	public IReadOnlyReactiveProperty<Vector2> MoveDirection => moveDirection;
+
+	IObservable<Unit> IAttackInput.OnInputAttackObservable => attackButton.OnClickAsObservable();
 
 	public void Initialize()
 	{
