@@ -14,8 +14,8 @@ namespace Invader.Bullet
 	/// </summary>
 	public class Bullet : MonoBehaviour, IBullet
 	{
-		IAttacker attacker;
-		public IAttacker Attacker => attacker;
+		IAttackable attacker;
+		public IAttackable Attacker => attacker;
 
 		Subject<IBullet> onHit;
 		public IObservable<IBullet> OnHit => OnHit;
@@ -24,7 +24,7 @@ namespace Invader.Bullet
 
 		float velocity = 0;
 
-		public void Initialize(IAttacker attacker, ILevelData levelData)
+		public void Initialize(IAttackable attacker, ILevelData levelData)
 		{
 			this.attacker = attacker;
 			velocity = levelData.PlayerBulletVelocity;

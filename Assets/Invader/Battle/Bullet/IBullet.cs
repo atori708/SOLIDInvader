@@ -11,7 +11,7 @@ namespace Invader.Bullet
 		/// <summary>
 		/// 弾撃った人
 		/// </summary>
-		IAttacker Attacker { get; }
+		IAttackable Attacker { get; }
 
 		/// <summary>
 		/// あたった

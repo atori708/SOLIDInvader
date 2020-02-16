@@ -9,7 +9,7 @@ namespace Invader.Unit
 		void Move(Vector2 dir);
 	}
 
-	public interface IAttacker
+	public interface IAttackable
 	{
 		/// <summary>
 		/// どっち向いてるか
@@ -27,6 +27,6 @@ namespace Invader.Unit
 		void ReceiveDamage(int damage);
 	}
 
-	public interface IUnit : IMover, IAttacker, IDamagable
+	public interface IUnit : IMover, IAttackable, IDamagable
 	{ }
 }

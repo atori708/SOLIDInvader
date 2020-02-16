@@ -8,17 +8,17 @@ namespace Invader.Unit
 {
 	public class Attacker
 	{
-		IAttacker target = null;
+		IAttackable attackable = null;
 
 		IAttackInput attackInput = null;
 
 		IDisposable disposable;
 
-		public Attacker(IAttacker target, IAttackInput attackInput)
+		public Attacker(IAttackable attackable, IAttackInput attackInput)
 		{
-			this.target = target;
+			this.attackable = attackable;
 			this.attackInput = attackInput;
-			disposable = attackInput.OnInputAttackObservable.Subscribe(_ => target.Attack());
+			disposable = attackInput.OnInputAttackObservable.Subscribe(_ => attackable.Attack());
 		}
 
 		~Attacker()
