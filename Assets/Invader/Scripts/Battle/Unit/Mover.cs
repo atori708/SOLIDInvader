@@ -1,19 +1,11 @@
 ﻿using System;
 using Invader.Inputs;
 using UniRx;
-using UnityEngine;
 
 namespace Invader.Unit
 {
-	/// <summary>
-	/// Update()を使いたいのでMonoBehaviourにしている
-	/// →そうするとコンストラクタが使えないのでなんか気持ち悪い
-	/// →Zenjectでなんとかできるのかな？
-	/// </summary>
 	public class Mover
 	{
-		// SerializeFieldにしたいけどインターフェースは無理なんだよなあ
-		// なんか新しいバージョンだとできるようになるとか聞いた
 		IMover movable = null;
 
 		IMoveInput moveInput;

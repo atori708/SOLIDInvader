@@ -1,0 +1,80 @@
+@startuml
+title SOLIDInvader
+
+namespace Levels {
+    interface ILevelData
+    class LevelData
+    LevelData-|>ILevelData
+}
+
+namespace Inputs{
+    interface IMoveInput
+    interface IAttackInput
+    interface IInput
+
+    DebugInput -|>IInput
+    IMoveInput <-- IInput
+    IAttackInput <-- IInput
+}
+
+namespace Units {
+    interface IUnit{
+    }
+    interface IMovable{
+    }
+    interface IAttackable{
+    }
+    interface IDamageable
+    class Mover
+    class Attacker
+
+    IUnit->IMovable
+    IUnit-->IAttackable
+    IUnit-->IDamageable
+}
+
+namespace Players {
+    class PlayerPresenter
+    class PlayerModel
+    class PlayerView
+
+    PlayerModel <-- PlayerPresenter
+    PlayerView<-PlayerPresenter
+
+    Units.IUnit <|-- PlayerModel
+    Units.Attacker<--PlayerModel
+    Units.Mover<--PlayerModel
+    Levels.ILevelData<---PlayerModel
+    PlayerModel-->Bullets.IBullet
+    Stages.IStage <--- PlayerModel
+
+    Inputs.IInput<----PlayerModel
+}
+
+namespace Bullets {
+    interface IBullet{
+    }
+
+    class Bullet
+    IBullet <|- Bullet
+    Units.IAttackable<-IBullet
+}
+
+namespace Stages {
+    interface IStage {
+        float Width
+        float LeftEdgePosX
+        float RightEdgePosX
+    }
+
+    class TestStage{
+
+    }
+
+    TestStage -|> IStage
+
+    Levels.ILevelData <-- TestStage
+}
+
+
+@enduml

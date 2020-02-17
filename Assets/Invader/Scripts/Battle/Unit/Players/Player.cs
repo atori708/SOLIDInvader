@@ -5,6 +5,7 @@ using UniRx;
 using Invader.Inputs;
 using Invader.Level;
 using Invader.Bullets;
+using Invader.Stages;
 
 namespace Invader.Unit.Players
 {
@@ -23,6 +24,7 @@ namespace Invader.Unit.Players
 		Bullet originalBulletObject;
 
 		ILevelData levelData;
+		IStage stage;
 
 		float moveVelocity;
 
@@ -31,9 +33,10 @@ namespace Invader.Unit.Players
 			return GameObject.Instantiate(originalBulletObject);
 		}
 
-		public PlayerModel(ILevelData levelData)
+		public PlayerModel(ILevelData levelData, IStage stage)
 		{
 			this.levelData = levelData;
+			this.stage = stage;
 			originalBulletObject = levelData.PlayerBullet;
 			moveVelocity = levelData.PlayerMoveVelocity;
 		}
@@ -42,12 +45,21 @@ namespace Invader.Unit.Players
 		{
 			var bullet = CreateBullet();
 			bullet.Initialize(this, levelData);
-			Debug.Log("Attack");
 		}
 
 		public void Move(Vector2 dir)
 		{
-			position.Value += dir * moveVelocity * Time.deltaTime;
+			var pos = position.Value;
+			pos += dir * moveVelocity * Time.deltaTime;
+
+			if (pos.x > stage.RightEdgePosX) {
+				pos.x = stage.RightEdgePosX;
+			}
+			else if (pos.x < stage.LeftEdgePosX) {
+				pos.x = stage.LeftEdgePosX;
+			}
+
+			position.Value = pos;
 		}
 
 		public void ReceiveDamage(int damage)

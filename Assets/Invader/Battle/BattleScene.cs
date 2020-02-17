@@ -5,6 +5,7 @@ using Invader.Unit;
 using Invader.Unit.Players;
 using Invader.Level;
 using Invader.Bullets;
+using Invader.Stages;
 
 namespace Invader.Scene
 {
@@ -18,13 +19,16 @@ namespace Invader.Scene
 		[SerializeField]
 		DebugInput debugInput = null;
 
+		TestStage testStage = null;
+
 		[SerializeField]
 		LevelData levelData = null;
 
 		public void Start()
 		{
+			testStage = new TestStage();
 			debugInput.Initialize();
-			playerPresenter.Initialize(debugInput, levelData);
+			playerPresenter.Initialize(debugInput, levelData, testStage);
 		}
 
 		public void End()

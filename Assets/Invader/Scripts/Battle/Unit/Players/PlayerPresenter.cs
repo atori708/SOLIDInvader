@@ -4,6 +4,7 @@ using Invader.Inputs;
 using UnityEngine;
 using UniRx;
 using Invader.Level;
+using Invader.Stages;
 
 namespace Invader.Unit.Players
 {
@@ -18,9 +19,9 @@ namespace Invader.Unit.Players
 
 		PlayerModel player = null;
 
-		public void Initialize(IInput input, ILevelData levelData)
+		public void Initialize(IInput input, ILevelData levelData, IStage stage)
 		{
-			player = new PlayerModel(levelData);
+			player = new PlayerModel(levelData, stage);
 			mover = new Mover(player, input);
 			attacker = new Attacker(player, input);
 
