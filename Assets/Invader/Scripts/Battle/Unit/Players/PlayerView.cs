@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Invader.Unit.Players
+namespace Invader.Units.Players
 {
 	public interface IPlayerView
 	{

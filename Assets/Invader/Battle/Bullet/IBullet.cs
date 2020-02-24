@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UniRx;
 using System;
-using Invader.Unit;
+using Invader.Units;
 
 namespace Invader.Bullets
 {

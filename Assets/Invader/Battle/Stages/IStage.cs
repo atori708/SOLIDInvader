@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Invader.Level;
 
 namespace Invader.Stages
 {
@@ -8,5 +8,7 @@ namespace Invader.Stages
 	{
 		float LeftEdgePosX { get; }
 		float RightEdgePosX { get; }
+
+		ILevelData LevelData { get; }
 	}
 }

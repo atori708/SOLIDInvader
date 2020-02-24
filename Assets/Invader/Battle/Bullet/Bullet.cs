@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Invader.Level;
-using Invader.Unit;
+using Invader.Units;
 using UniRx;
 using UnityEngine;
 

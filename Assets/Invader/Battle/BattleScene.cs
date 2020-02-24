@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Invader.Unit;
-using Invader.Unit.Players;
+using Invader.Units;
+using Invader.Units.Players;
 using Invader.Level;
 using Invader.Bullets;
 using Invader.Stages;
+using Invader.Units.Enemies;
 
 namespace Invader.Scene
 {
@@ -24,11 +25,15 @@ namespace Invader.Scene
 		[SerializeField]
 		LevelData levelData = null;
 
+		EnemyArmy enemyArmy;
+
 		public void Start()
 		{
-			testStage = new TestStage();
 			debugInput.Initialize();
-			playerPresenter.Initialize(debugInput, levelData, testStage);
+			testStage = new TestStage(levelData);
+
+			enemyArmy = new EnemyArmy(testStage);
+			playerPresenter.Initialize(debugInput, testStage);
 		}
 
 		public void End()

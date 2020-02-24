@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-namespace Invader.Unit
+namespace Invader.Units
 {
 	public interface IMover
 	{

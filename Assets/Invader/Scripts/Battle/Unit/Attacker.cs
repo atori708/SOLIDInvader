@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Invader.Inputs;
 using UniRx;
 
-namespace Invader.Unit
+namespace Invader.Units
 {
 	public class Attacker
 	{

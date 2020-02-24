@@ -7,7 +7,7 @@ using Invader.Level;
 using Invader.Bullets;
 using Invader.Stages;
 
-namespace Invader.Unit.Players
+namespace Invader.Units.Players
 {
 	/// <summary>
 	/// プレイヤー
@@ -39,6 +39,7 @@ namespace Invader.Unit.Players
 			this.stage = stage;
 			originalBulletObject = levelData.PlayerBullet;
 			moveVelocity = levelData.PlayerMoveVelocity;
+			position.Value = new Vector2(0, -2.3f);
 		}
 
 		public void Attack()

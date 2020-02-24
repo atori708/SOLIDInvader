@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Invader.Unit;
-using Invader.Unit.Players;
+using Invader.Units;
+using Invader.Units.Players;
 
 namespace Invader.Scene
 {

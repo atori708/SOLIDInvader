@@ -6,7 +6,7 @@ using UniRx;
 using Invader.Level;
 using Invader.Stages;
 
-namespace Invader.Unit.Players
+namespace Invader.Units.Players
 {
 	public class PlayerPresenter : MonoBehaviour
 	{
@@ -19,9 +19,9 @@ namespace Invader.Unit.Players
 
 		PlayerModel player = null;
 
-		public void Initialize(IInput input, ILevelData levelData, IStage stage)
+		public void Initialize(IInput input, IStage stage)
 		{
-			player = new PlayerModel(levelData, stage);
+			player = new PlayerModel(stage.LevelData, stage);
 			mover = new Mover(player, input);
 			attacker = new Attacker(player, input);
 
