@@ -5,25 +5,6 @@ using UnityEngine;
 
 namespace Invader.Units
 {
-	public class BulletMover
-	{
-		IMovable movable = null;
-
-		Vector2 direction;
-		IDisposable disposable;
-
-		public BulletMover(IMovable movable, Vector2 direction)
-		{
-			this.movable = movable;
-			this.direction = direction;
-		}
-
-		public void Move()
-		{
-			movable.Move(direction);
-		}
-	}
-
 	public class PlayerMover
 	{
 		IMovable movable = null;

@@ -34,7 +34,6 @@ namespace Invader.Scene
 
 		BulletFactory bulletFactory = null;
 		IBullet playerBullet = null;
-		BulletMover bulletMover = null;
 
 		EnemyArmy enemyArmy;
 
@@ -54,11 +53,9 @@ namespace Invader.Scene
 				// 弾生成
 				if (playerBullet == null) {
 					playerBullet = bulletFactory.CreateBullet(attacker);
-					bulletMover = new BulletMover(playerBullet, attacker.Direction);
 
 					playerBullet.OnDestroy.Subscribe(_ => {
 						playerBullet = null;
-						bulletMover = null;
 					}).AddTo(this);
 				}
 			}).AddTo(this);
@@ -73,7 +70,7 @@ namespace Invader.Scene
 
 		private void Update()
 		{
-			bulletMover?.Move();
+			playerBullet?.Move(playerModel.Direction);
 		}
 	}
 }
