@@ -63,7 +63,7 @@ namespace Invader.Units.Players
 			position.Value = pos;
 		}
 
-		public void ReceiveDamage(int damage)
+		public void ReceiveDamage(DamageData damage)
 		{
 		}
 	}

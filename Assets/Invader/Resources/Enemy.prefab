@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1342285105408287522}
   - component: {fileID: 1342285105408287525}
-  - component: {fileID: 1342285105408287524}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -45,20 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c467b2d2405972c4db555420659701e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 1342285105408287524}
---- !u!114 &1342285105408287524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1342285105408287527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f49a534bde96e14c8474317a2b81a74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1342285105501812514}
+  view: {fileID: 3699650881120442389}
 --- !u!1 &1342285105501812517
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,6 +56,8 @@ GameObject:
   - component: {fileID: 1342285105501812512}
   - component: {fileID: 1342285105501812514}
   - component: {fileID: 1342285105501812515}
+  - component: {fileID: 5429014242027377010}
+  - component: {fileID: 3699650881120442389}
   m_Layer: 0
   m_Name: EnemyView
   m_TagString: Untagged
@@ -160,3 +148,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &5429014242027377010
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342285105501812517}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.62, y: 2.589511, z: 0.20000002}
+  m_Center: {x: 0, y: -0.016661733, z: 0}
+--- !u!114 &3699650881120442389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342285105501812517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f49a534bde96e14c8474317a2b81a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1342285105501812514}

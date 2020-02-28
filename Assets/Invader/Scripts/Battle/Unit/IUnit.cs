@@ -30,9 +30,19 @@ namespace Invader.Units
 		void Attack();
 	}
 
+	public struct DamageData
+	{
+		public int Damage { get; }
+
+		public DamageData(int damage)
+		{
+			this.Damage = damage;
+		}
+	}
+
 	public interface IDamagable
 	{
-		void ReceiveDamage(int damage);
+		void ReceiveDamage(DamageData damage);
 	}
 
 	public interface IUnit : IMover, IAttackable, IDamagable

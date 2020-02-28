@@ -17,7 +17,7 @@ namespace Invader.Bullets
 		IAttackable attacker;
 		public IAttackable Attacker => attacker;
 
-		Subject<IBullet> onHit;
+		Subject<IBullet> onHit = new Subject<IBullet>();
 		public IObservable<IBullet> OnHit => OnHit;
 
 		Vector3 direction;
@@ -39,7 +39,8 @@ namespace Invader.Bullets
 				return;
 			}
 
-			damageable.ReceiveDamage(1);
+			var damageData = new DamageData(1);
+			damageable.ReceiveDamage(damageData);
 			onHit.OnNext(this);
 
 			Destroy(gameObject);

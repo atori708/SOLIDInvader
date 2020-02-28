@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -37,7 +38,7 @@ namespace Invader.Units.Enemies
 	{
 		public Vector2 Direction => Vector2.down;
 
-		ReactiveProperty<Vector2> position = new ReactiveProperty<Vector2>();
+		ReactiveProperty<Vector2> position;
 		public IReadOnlyReactiveProperty<Vector2> Position => position;
 
 		ReactiveProperty<EnemyData> enemyData;
@@ -45,6 +46,7 @@ namespace Invader.Units.Enemies
 
 		public EnemyModel(EnemyData enemyData, Vector2 initialPos)
 		{
+			this.position = new ReactiveProperty<Vector2>();
 			this.enemyData = new ReactiveProperty<EnemyData>(enemyData);
 			position.Value = initialPos;
 		}
@@ -57,7 +59,7 @@ namespace Invader.Units.Enemies
 		{
 		}
 
-		public void ReceiveDamage(int damage)
+		public void ReceiveDamage(DamageData damage)
 		{
 		}
 	}

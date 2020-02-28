@@ -20,15 +20,16 @@ namespace Invader.Units.Enemies
 			EnemyFactory factory = new EnemyFactory();
 			enemies = new List<IEnemy>();
 
-			Vector2 pivot = new Vector2(-6, 5);
-			Vector2 pos = pivot;
+			// とりあえず並べる
+			Vector2 origin = new Vector2(-6, 5);
+			Vector2 pos = origin;
 			for (int row = 0; row < 5; row++) {
 				for (int enemyColumn = 0; enemyColumn < 11; enemyColumn++) {
 					pos.x += 1;
 					var enemy = factory.Create(EnemyData.EnemyType.First, pos);
 					enemies.Add(enemy);
 				}
-				pos.x = pivot.x;
+				pos.x = origin.x;
 				pos.y -= 1;
 			}
 		}

@@ -17,6 +17,7 @@ namespace Invader.Units.Enemies
 			this.model = model;
 			model.EnemyData.Subscribe(view.SetEnemyData).AddTo(this);
 			model.Position.Subscribe(view.SetPosition).AddTo(this);
+			view.OnReceiveDamage.Subscribe(model.ReceiveDamage).AddTo(this);
 		}
 	}
 }
