@@ -1,12 +1,32 @@
 ﻿using System;
 using Invader.Inputs;
 using UniRx;
+using UnityEngine;
 
 namespace Invader.Units
 {
-	public class Mover
+	public class BulletMover
 	{
-		IMover movable = null;
+		IMovable movable = null;
+
+		Vector2 direction;
+		IDisposable disposable;
+
+		public BulletMover(IMovable movable, Vector2 direction)
+		{
+			this.movable = movable;
+			this.direction = direction;
+		}
+
+		public void Move()
+		{
+			movable.Move(direction);
+		}
+	}
+
+	public class PlayerMover
+	{
+		IMovable movable = null;
 
 		IMoveInput moveInput;
 
@@ -14,7 +34,7 @@ namespace Invader.Units
 
 		IDisposable disposable;
 
-		public Mover(IMover movable, IMoveInput moveInput)
+		public PlayerMover(IMovable movable, IMoveInput moveInput)
 		{
 			this.movable = movable;
 			this.moveInput = moveInput;
@@ -22,7 +42,7 @@ namespace Invader.Units
 			disposable = this.moveInput.OnInputMoveObservable.Subscribe(SetMoving);
 		}
 
-		~Mover()
+		~PlayerMover()
 		{
 			disposable.Dispose();
 		}

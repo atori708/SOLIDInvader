@@ -13,7 +13,7 @@ namespace Invader.Level
 		float PlayerMoveVelocity { get; }
 		float PlayerBulletVelocity { get; }
 
-		Bullet PlayerBullet { get; }
+		BulletModel PlayerBullet { get; }
 		// etc...
 	}
 }

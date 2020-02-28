@@ -13,7 +13,6 @@ namespace Invader.Units.Players
 
 	public class PlayerView : MonoBehaviour, IPlayerView
 	{
-
 		public void FireBullet()
 		{
 		}

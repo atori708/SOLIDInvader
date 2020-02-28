@@ -43,7 +43,7 @@ namespace Invader.Units.Enemies
 
 		public void Destroy()
 		{
-			// TODO 破壊されたイベント発火したほうがいい
+			// TODO 破壊されたイベント発火したほうがいい 使い回すとかが必要なので
 			Destroy(gameObject);
 		}
 	}

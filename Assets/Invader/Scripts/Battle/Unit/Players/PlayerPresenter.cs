@@ -10,7 +10,7 @@ namespace Invader.Units.Players
 {
 	public class PlayerPresenter : MonoBehaviour
 	{
-		Mover mover = null;
+		PlayerMover mover = null;
 
 		Attacker attacker = null;
 
@@ -19,10 +19,10 @@ namespace Invader.Units.Players
 
 		PlayerModel player = null;
 
-		public void Initialize(IInput input, IStage stage)
+		public void Initialize(PlayerModel playerModel, IInput input, IStage stage)
 		{
-			player = new PlayerModel(stage.LevelData, stage);
-			mover = new Mover(player, input);
+			player = playerModel;
+			mover = new PlayerMover(player, input);
 			attacker = new Attacker(player, input);
 
 			player.Position.Subscribe(playerView.SetPosition).AddTo(this);
@@ -30,6 +30,7 @@ namespace Invader.Units.Players
 
 		private void Update()
 		{
+			// TODO ここで呼ぶのおかしい Mover自身が勝手にUpdateを呼ぶべきでは...
 			mover.Move();
 		}
 	}

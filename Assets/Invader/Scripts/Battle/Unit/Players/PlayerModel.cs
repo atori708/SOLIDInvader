@@ -6,6 +6,7 @@ using Invader.Inputs;
 using Invader.Level;
 using Invader.Bullets;
 using Invader.Stages;
+using System;
 
 namespace Invader.Units.Players
 {
@@ -19,19 +20,17 @@ namespace Invader.Units.Players
 		ReactiveProperty<Vector2> position = new ReactiveProperty<Vector2>();
 		public IReadOnlyReactiveProperty<Vector2> Position => position;
 
+		Subject<PlayerModel> onAttackSubject = new Subject<PlayerModel>();
+		public IObservable<PlayerModel> OnAttackObservable => onAttackSubject;
+
 		public Vector2 Direction => Vector2.up;
 
-		Bullet originalBulletObject;
+		BulletModel originalBulletObject;
 
 		ILevelData levelData;
 		IStage stage;
 
 		float moveVelocity;
-
-		Bullet CreateBullet()
-		{
-			return GameObject.Instantiate(originalBulletObject);
-		}
 
 		public PlayerModel(ILevelData levelData, IStage stage)
 		{
@@ -44,8 +43,7 @@ namespace Invader.Units.Players
 
 		public void Attack()
 		{
-			var bullet = CreateBullet();
-			bullet.Initialize(this, levelData);
+			onAttackSubject.OnNext(this);
 		}
 
 		public void Move(Vector2 dir)
@@ -65,6 +63,27 @@ namespace Invader.Units.Players
 
 		public void ReceiveDamage(DamageData damage)
 		{
+		}
+	}
+
+	public class BulletFactory
+	{
+		BulletPresenter originalBulletObject;
+
+		ILevelData levelData;
+
+		public BulletFactory(BulletPresenter originalBulletObject, ILevelData levelData)
+		{
+			this.originalBulletObject = originalBulletObject;
+			this.levelData = levelData;
+		}
+
+		public IBullet CreateBullet(IAttackable attackable)
+		{
+			var presenter = GameObject.Instantiate(originalBulletObject);
+			BulletModel model = new BulletModel(attackable, levelData);
+			presenter.Initialize(model);
+			return model;
 		}
 	}
 }

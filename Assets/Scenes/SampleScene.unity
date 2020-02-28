@@ -1118,6 +1118,8 @@ MonoBehaviour:
   playerPresenter: {fileID: 1081532928}
   debugInput: {fileID: 170389810}
   levelData: {fileID: 1922618616}
+  originalBullet: {fileID: 4511125763973299909, guid: a61058591d1a9644a866567d6f7f50cb,
+    type: 3}
 --- !u!4 &1922618615
 Transform:
   m_ObjectHideFlags: 0
@@ -1144,8 +1146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8ed5ae9acd92d4680ee06370e5e0ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBullet: {fileID: 6297843142501500273, guid: a61058591d1a9644a866567d6f7f50cb,
-    type: 3}
 --- !u!1 &1953426884
 GameObject:
   m_ObjectHideFlags: 0

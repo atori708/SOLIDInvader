@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Invader.Units
 {
-	public interface IMover
+	public interface IMovable
 	{
 		IReadOnlyReactiveProperty<Vector2> Position { get; }
 
@@ -45,6 +45,6 @@ namespace Invader.Units
 		void ReceiveDamage(DamageData damage);
 	}
 
-	public interface IUnit : IMover, IAttackable, IDamagable
+	public interface IUnit : IMovable, IAttackable, IDamagable
 	{ }
 }

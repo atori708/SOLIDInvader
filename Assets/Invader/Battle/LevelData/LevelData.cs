@@ -10,7 +10,7 @@ namespace Invader.Level
 		public float PlayerMoveVelocity => 10;
 
 		[SerializeField]
-		Bullet playerBullet = null;
-		public Bullet PlayerBullet => playerBullet;
+		BulletModel playerBullet = null;
+		public BulletModel PlayerBullet => playerBullet;
 	}
 }
