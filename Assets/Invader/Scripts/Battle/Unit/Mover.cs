@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Invader.Units
 {
-	public class PlayerMover
+	public class PlayerMover : IDisposable
 	{
 		IMovable movable = null;
 
@@ -23,7 +23,7 @@ namespace Invader.Units
 			disposable = this.moveInput.OnInputMoveObservable.Subscribe(SetMoving);
 		}
 
-		~PlayerMover()
+		public void Dispose()
 		{
 			disposable.Dispose();
 		}

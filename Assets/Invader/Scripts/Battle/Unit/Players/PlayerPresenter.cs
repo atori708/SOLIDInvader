@@ -5,10 +5,11 @@ using UnityEngine;
 using UniRx;
 using Invader.Level;
 using Invader.Stages;
+using System;
 
 namespace Invader.Units.Players
 {
-	public class PlayerPresenter : MonoBehaviour
+	public class PlayerPresenter : MonoBehaviour, IDisposable
 	{
 		PlayerMover mover = null;
 
@@ -32,6 +33,11 @@ namespace Invader.Units.Players
 		{
 			// TODO ここで呼ぶのおかしい Mover自身が勝手にUpdateを呼ぶべきでは...
 			mover.Move();
+		}
+
+		public void Dispose()
+		{
+			mover.Dispose();
 		}
 	}
 }

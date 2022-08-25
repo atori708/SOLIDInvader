@@ -30,9 +30,9 @@ namespace Invader.Units
 		void Attack();
 	}
 
-	public struct DamageData
+	public readonly struct DamageData
 	{
-		public int Damage { get; }
+		public readonly int Damage { get; }
 
 		public DamageData(int damage)
 		{
@@ -40,11 +40,11 @@ namespace Invader.Units
 		}
 	}
 
-	public interface IDamagable
+	public interface IReceivableDamage
 	{
 		void ReceiveDamage(DamageData damage);
 	}
 
-	public interface IUnit : IMovable, IAttackable, IDamagable
+	public interface IUnit : IMovable, IAttackable, IReceivableDamage
 	{ }
 }

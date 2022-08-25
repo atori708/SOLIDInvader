@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class BattleStarter : MonoBehaviour
 {
-	IScene battleScene;
+	[SerializeField]
+	BattleScene battleScene;
+
 
 	private void Awake()
 	{
-		battleScene = new BattleScene();
+		//battleScene.OpenScene();
 	}
 }

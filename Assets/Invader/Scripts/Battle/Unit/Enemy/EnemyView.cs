@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Invader.Units.Enemies
 {
-	public interface IEnemyView : IDamagable
+	public interface IEnemyView : IReceivableDamage
 	{
 		void SetPosition(Vector2 vector2);
 	}

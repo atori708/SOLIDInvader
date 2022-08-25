@@ -8,7 +8,7 @@ namespace Invader.Scene
 {
 	public interface IScene
 	{
-		void Start();
-		void End();
+		void OpenScene();
+		void CloseScene();
 	}
 }

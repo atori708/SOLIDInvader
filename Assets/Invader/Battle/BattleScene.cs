@@ -8,6 +8,7 @@ using Invader.Bullets;
 using Invader.Stages;
 using Invader.Units.Enemies;
 using UniRx;
+using Invader.Inputs;
 
 namespace Invader.Scene
 {
@@ -39,16 +40,35 @@ namespace Invader.Scene
 
 		PlayerModel playerModel;
 
-		public void Start()
+		private void Awake()
+		{
+			OpenScene();
+		}
+
+		private void Update()
+		{
+			playerBullet?.Move(playerModel.Direction);
+		}
+
+		private void OnDestroy()
+		{
+			CloseScene();
+		}
+
+		public void OpenScene()
 		{
 			debugInput.Initialize();
+
+			IInput input = new KeyboardInput();
+
+
 			testStage = new TestStage(levelData);
 
-			bulletFactory = new BulletFactory(originalBullet, levelData);
-			
+			bulletFactory = new BulletFactory(originalBullet, testStage);
+
 			// プレイヤー
 			playerModel = new PlayerModel(testStage.LevelData, testStage);
-			playerPresenter.Initialize(playerModel, debugInput, testStage);
+			playerPresenter.Initialize(playerModel, input, testStage);
 			playerModel.OnAttackObservable.Subscribe(attacker => {
 				// 弾生成
 				if (playerBullet == null) {
@@ -64,13 +84,9 @@ namespace Invader.Scene
 			enemyArmy = new EnemyArmy(testStage);
 		}
 
-		public void End()
+		public void CloseScene()
 		{
-		}
-
-		private void Update()
-		{
-			playerBullet?.Move(playerModel.Direction);
+			playerPresenter.Dispose();
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace Invader.Bullets
 
 		private void OnTriggerEnter(Collider other)
 		{
-			var damageable = other.GetComponent<IDamagable>();
+			var damageable = other.GetComponent<IReceivableDamage>();
 			if (damageable == null) {
 				return;
 			}

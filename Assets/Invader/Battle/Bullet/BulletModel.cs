@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Invader.Level;
+using Invader.Stages;
 using Invader.Units;
 using UniRx;
 using UnityEngine;
@@ -26,14 +27,17 @@ namespace Invader.Bullets
 
 		float velocity = 0;
 
-		public BulletModel(IAttackable attackable, ILevelData levelData)
+		IStage _stage;
+
+		public BulletModel(IAttackable attackable, IStage stage)
 		{
 			position = new ReactiveProperty<Vector2>(attackable.Position.Value);
+			_stage = stage;
 			onDestroy = new Subject<Unit>();
 
 			this.attacker = attackable;
 
-			velocity = levelData.PlayerBulletVelocity;
+			velocity = _stage.LevelData.PlayerBulletVelocity;
 			direction = attackable.Direction;
 		}
 

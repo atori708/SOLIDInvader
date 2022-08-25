@@ -51,11 +51,13 @@ namespace Invader.Units.Players
 			var pos = position.Value;
 			pos += dir * moveVelocity * Time.deltaTime;
 
-			if (pos.x > stage.RightEdgePosX) {
-				pos.x = stage.RightEdgePosX;
+			var area = stage.StageArea;
+
+			if (pos.x > area.RightEdgePosX) {
+				pos.x = area.RightEdgePosX;
 			}
-			else if (pos.x < stage.LeftEdgePosX) {
-				pos.x = stage.LeftEdgePosX;
+			else if (pos.x < area.LeftEdgePosX) {
+				pos.x = area.LeftEdgePosX;
 			}
 
 			position.Value = pos;
@@ -70,18 +72,18 @@ namespace Invader.Units.Players
 	{
 		BulletPresenter originalBulletObject;
 
-		ILevelData levelData;
+		IStage _stage;
 
-		public BulletFactory(BulletPresenter originalBulletObject, ILevelData levelData)
+		public BulletFactory(BulletPresenter originalBulletObject, IStage stage)
 		{
 			this.originalBulletObject = originalBulletObject;
-			this.levelData = levelData;
+			this._stage = stage;
 		}
 
 		public IBullet CreateBullet(IAttackable attackable)
 		{
 			var presenter = GameObject.Instantiate(originalBulletObject);
-			BulletModel model = new BulletModel(attackable, levelData);
+			BulletModel model = new BulletModel(attackable, _stage);
 			presenter.Initialize(model);
 			return model;
 		}
