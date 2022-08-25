@@ -43,6 +43,8 @@ namespace Invader.Scene
 		[SerializeField]
 		Button attackButton = null;
 
+		IInput input;
+
 		BulletFactory bulletFactory = null;
 		IBullet playerBullet = null;
 
@@ -68,7 +70,7 @@ namespace Invader.Scene
 		public void OpenScene()
 		{
 			//IInput input = new KeyboardInput();
-			IInput input = new DebugInput(leftButton, rightButton, attackButton);
+			input = new DebugInput(leftButton, rightButton, attackButton);
 
 			testStage = new TestStage(levelData);
 
@@ -95,6 +97,7 @@ namespace Invader.Scene
 		public void CloseScene()
 		{
 			playerPresenter.Dispose();
+			input.Dispose();
 		}
 	}
 }

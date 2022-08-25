@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-
 namespace Invader.Inputs
 {
 	public class KeyboardInput : IInput
@@ -17,6 +16,8 @@ namespace Invader.Inputs
 
 		Subject<Unit> onClickAttackKey = new ();
 		public IObservable<Unit> OnInputAttackObservable => onClickAttackKey;
+
+		CompositeDisposable disposables = new();
 
 		public KeyboardInput()
 		{
@@ -35,9 +36,12 @@ namespace Invader.Inputs
 				if(Input.GetKeyDown(KeyCode.Space)) {
 					onClickAttackKey.OnNext(Unit.Default);
 				}
-			});
+			}).AddTo(disposables);
+		}
 
-
+		public void Dispose()
+		{
+			disposables.Dispose();
 		}
 	}
 }

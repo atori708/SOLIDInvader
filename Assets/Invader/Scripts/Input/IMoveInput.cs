@@ -10,7 +10,6 @@ namespace Invader.Inputs
 		IReadOnlyReactiveProperty<Vector2> MoveDirection { get; }
 	}
 
-	public interface IInput : IMoveInput, IAttackInput
+	public interface IInput : IMoveInput, IAttackInput, IDisposable
 	{ }
-
 }

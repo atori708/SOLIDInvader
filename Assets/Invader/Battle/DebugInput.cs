@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Invader.Inputs
 {
-	public class DebugInput : IInput, IDisposable
+	public class DebugInput : IInput
 	{
 		Subject<bool> _onInputMoveSubject = new Subject<bool>();
 		public IObservable<bool> OnInputMoveObservable => _onInputMoveSubject;
