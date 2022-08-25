@@ -9,6 +9,7 @@ using Invader.Stages;
 using Invader.Units.Enemies;
 using UniRx;
 using Invader.Inputs;
+using UnityEngine.UI;
 
 namespace Invader.Scene
 {
@@ -32,6 +33,15 @@ namespace Invader.Scene
 		/// </summary>
 		[SerializeField]
 		BulletPresenter originalBullet = null;
+
+		[SerializeField]
+		DebugInputMoveButton leftButton = null;
+
+		[SerializeField]
+		DebugInputMoveButton rightButton = null;
+
+		[SerializeField]
+		Button attackButton = null;
 
 		BulletFactory bulletFactory = null;
 		IBullet playerBullet = null;
@@ -57,10 +67,8 @@ namespace Invader.Scene
 
 		public void OpenScene()
 		{
-			debugInput.Initialize();
-
-			IInput input = new KeyboardInput();
-
+			//IInput input = new KeyboardInput();
+			IInput input = new DebugInput(leftButton, rightButton, attackButton);
 
 			testStage = new TestStage(levelData);
 

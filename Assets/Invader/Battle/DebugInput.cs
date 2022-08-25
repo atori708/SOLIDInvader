@@ -8,45 +8,49 @@ using UnityEngine.UI;
 
 namespace Invader.Inputs
 {
-	public class DebugInput : MonoBehaviour, IInput
+	public class DebugInput : IInput, IDisposable
 	{
-		[SerializeField]
-		DebugInputMoveButton leftButton = null;
+		Subject<bool> _onInputMoveSubject = new Subject<bool>();
+		public IObservable<bool> OnInputMoveObservable => _onInputMoveSubject;
 
-		[SerializeField]
-		DebugInputMoveButton rightButton = null;
+		ReactiveProperty<Vector2> _moveDirection = new ReactiveProperty<Vector2>();
+		public IReadOnlyReactiveProperty<Vector2> MoveDirection => _moveDirection;
 
-		[SerializeField]
-		Button attackButton = null;
+		Button _attackButton;
+		IObservable<Unit> IAttackInput.OnInputAttackObservable => _attackButton.OnClickAsObservable();
 
-		Subject<bool> onInputMoveSubject = new Subject<bool>();
-		public IObservable<bool> OnInputMoveObservable => onInputMoveSubject;
+		CompositeDisposable _disposables = new();
 
-		ReactiveProperty<Vector2> moveDirection = new ReactiveProperty<Vector2>();
-		public IReadOnlyReactiveProperty<Vector2> MoveDirection => moveDirection;
-
-		IObservable<Unit> IAttackInput.OnInputAttackObservable => attackButton.OnClickAsObservable();
-
-		public void Initialize()
+		public DebugInput(DebugInputMoveButton leftButton, DebugInputMoveButton rightButton, Button attackButton)
 		{
+			_attackButton = attackButton;
+
+			// 左移動
 			leftButton.OnDownObservable
 				.Subscribe(_ => {
-					moveDirection.Value = Vector2.left;
-					onInputMoveSubject.OnNext(true);
+					_moveDirection.Value = Vector2.left;
+					_onInputMoveSubject.OnNext(true);
 				})
-				.AddTo(this);
+				.AddTo(_disposables);
 
+			// 右移動
 			rightButton.OnDownObservable
 				.Subscribe(_ => {
-					moveDirection.Value = Vector2.right;
-					onInputMoveSubject.OnNext(true);
+					_moveDirection.Value = Vector2.right;
+					_onInputMoveSubject.OnNext(true);
 				})
-				.AddTo(this);
+				.AddTo(_disposables);
 
+			// 移動終了
 			leftButton.OnUpObservable.Merge(rightButton.OnUpObservable).Subscribe(_ => {
-				onInputMoveSubject.OnNext(false);
-				moveDirection.Value = Vector2.zero;
-			}).AddTo(this);
+				_onInputMoveSubject.OnNext(false);
+				_moveDirection.Value = Vector2.zero;
+			}).AddTo(_disposables);
+		}
+
+		public void Dispose()
+		{
+			_disposables.Dispose();
 		}
 	}
 }
